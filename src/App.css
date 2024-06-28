@@ -1,54 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-*{
+* {
   font-family: 'Poppins', sans-serif;
+}
 
+body {
+  background-color: lightblue;
 }
-body{
-  background-color:lightcyan;
-  
-}
+
 .rating-color {
-  color: #fbc634 !important;
+  color: #1e90ff !important; /* DodgerBlue */
 }
 
 .small-ratings i {
-  color: #cecece;
+  color: #87cefa; /* LightSkyBlue */
 }
 
 .review-stat {
   font-size: 18px;
 }
-.subtotal{
-  border-top: lightgray 1px solid;
-  }
-.product-img{
+
+.subtotal {
+  border-top: #1e90ff 1px solid; /* DodgerBlue */
+}
+
+.product-img {
   padding: 3%;
 }
 
-
-header ,nav,footer{
-  background: rgba( 255, 255, 255, 0.3 );
-  backdrop-filter: blur( 4  px );
-  -webkit-backdrop-filter: blur( 8px );
-  -webkit-box-shadow: 0px 0px 11px 4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 11px 4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 11px 4px rgba(0,0,0,0.75);
+header, nav, footer {
+  background: rgba( 240, 248, 255, 0.3 ); /* AliceBlue */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  -webkit-box-shadow: 0px 0px 11px 4px rgba(30, 144, 255, 0.75); /* DodgerBlue */
+  -moz-box-shadow: 0px 0px 11px 4px rgba(30, 144, 255, 0.75); /* DodgerBlue */
+  box-shadow: 0px 0px 11px 4px rgba(30, 144, 255, 0.75); /* DodgerBlue */
 }
 
-header .row{
+header .row {
   padding: 5px 15%;
 }
 
-.CardCss{
+.CardCss {
   margin-top: 10%;
   margin-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  background: rgba( 240, 248, 255, 0.3 ); /* AliceBlue */
+  border: 1px solid #1e90ff; /* DodgerBlue */
+  padding: 15px;
+  box-shadow: 0px 0px 11px 4px rgba(30, 144, 255, 0.75); /* DodgerBlue */
 }
 
-  
 @media screen and (max-width: 1000px) {
   .CardCss {
     margin-top: 15%;
   }
 }
-

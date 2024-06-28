@@ -179,10 +179,10 @@ const Card = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="row g-0 p-4 subtotal">
-                    <div className="col ">
+                  <div className="row g-0 p-4 ">
+                    <div className="col pt-4 subtotal">
                       <div className="row">
-                        <div className="card-title col">
+                        <div className="card-title col ">
                           Original Price (1 item) :
                         </div>
                         <div className="card-title col text-end">${price}</div>
