@@ -24,6 +24,23 @@ body {
   border-top: #1e90ff 1px solid; /* DodgerBlue */
 }
 
+.OverallPriceCss {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 15px;
+  align-items: center;
+  
+  border-radius: 20px; /* Optional: for rounded corners */
+}
+
+@media screen and (max-width: 1000px) {
+  .OverallPriceCss {
+    margin-top: 15%;
+  }
+}
+
 .product-img {
   padding: 3%;
 }

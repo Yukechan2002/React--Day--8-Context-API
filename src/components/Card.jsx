@@ -12,7 +12,19 @@ const Card = () => {
     cardQuantity,
     setCardQuantity,
   } = useUserContext();
-  let a = 0;
+  const [overallTotal, setOverallTotal] = useState(0); // New state variable for overall total
+
+  useEffect(() => {
+    let total = 0;
+    products.forEach((product) => {
+      const priceAfterDiscount = (
+        product.price -
+        product.price * (product.discountPercentage / 100)
+      ).toFixed(2);
+      total += parseFloat(priceAfterDiscount) * (product.quantity || 1);
+    });
+    setOverallTotal(total.toFixed(2));
+  }, [products]);
 
   return (
     <div>
@@ -22,7 +34,7 @@ const Card = () => {
           product.price * (product.discountPercentage / 100)
         ).toFixed(2);
 
-        const [quantity, setQuantity] = useState(1);
+        const [quantity, setQuantity] = useState(product.quantity || 1);
         const [subTotal, setSubTotal] = useState(
           (priceAfterDiscount * quantity).toFixed(2)
         );
@@ -31,17 +43,16 @@ const Card = () => {
           setSubTotal((priceAfterDiscount * quantity).toFixed(2));
         }, [quantity]);
 
-        useEffect(() => {
-          a = a + +subTotal;
-          setCardAmount(a);
-        }, []);
-
         const handleQuantitySub = (priceAfterDiscount, quantity) => {
           if (quantity > 1) {
             setQuantity(quantity - 1);
             setCardQuantity(cardQuantity - 1);
-            a = cardAmount - +priceAfterDiscount;
-            setCardAmount(a);
+            setCardAmount(cardAmount - parseFloat(priceAfterDiscount));
+            setOverallTotal((prevTotal) =>
+              (parseFloat(prevTotal) - parseFloat(priceAfterDiscount)).toFixed(
+                2
+              )
+            );
           }
         };
 
@@ -49,13 +60,15 @@ const Card = () => {
           if (products[i].stock > quantity) {
             setQuantity(quantity + 1);
             setCardQuantity(cardQuantity + 1);
-            setCardAmount(cardAmount + +subTotal);
-            console.log(a);
-            a = cardAmount + +priceAfterDiscount;
-            console.log(a);
-            setCardAmount(a);
+            setCardAmount(cardAmount + parseFloat(priceAfterDiscount));
+            setOverallTotal((prevTotal) =>
+              (parseFloat(prevTotal) + parseFloat(priceAfterDiscount)).toFixed(
+                2
+              )
+            );
           }
         };
+
         const price = product.price;
         const DetailPrice = price * (product.discountPercentage / 100);
 
@@ -75,7 +88,7 @@ const Card = () => {
               <div className="row g-0 ">
                 <div className="col-md-5 d-flex justify-content-center align-items-center">
                   <img
-                    src={product.images} //[1] ? product.images[1] : product.images[0]
+                    src={product.images}
                     className="img-fluid product-img"
                     alt="..."
                     style={{ borderRadius: "30px" }}
@@ -219,6 +232,9 @@ const Card = () => {
           </div>
         );
       })}
+      <div className="container mt-4 OverallPriceCss">
+        <h3>Overall Total: ${overallTotal}</h3>
+      </div>
     </div>
   );
 };
